@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_ErrorLayout.cshtml";
+}
+<div id="center">
+    <span id="err-404">Error 404!</span><br />
+    <span class="err-msg">The requested URL was not found on this server.</span>
+    <br />
+    <a href="@Url.Action("Index", "Home")">Back to homepage</a>
+</div>

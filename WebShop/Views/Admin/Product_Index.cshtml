@@ -1,0 +1,65 @@
+﻿@model IEnumerable<VM_Product_List>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+    <div class="container">
+        <div class="row">
+            <div class="block-header">
+                <h2>Products</h2>
+
+                <ul class="actions">
+                    <li>
+                        <a href="@Url.Action("Product_Create", "Admin")">
+                            <i class="zmdi zmdi-edit"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="" data-toggle="dropdown">
+                            <i class="zmdi zmdi-more-vert"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a href="">Refresh</a>
+                            </li>
+                            <li>
+                                <a href="">Manage Widgets</a>
+                            </li>
+                            <li>
+                                <a href="">Widgets Settings</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card blog-post">
+
+                        <div class="bp-header">
+
+                            <img src="~/Content/Images/@item.Image" alt="">
+
+                            <a href="" class="bp-title">
+                                <h2>@item.Title</h2>
+                                @*<small>Vivamus sagittis lacus vel augue laoreet rutrum</small>*@
+                            </a>
+                        </div>
+
+                        <div class="p-20">
+                            @item.Description
+                        </div>
+                        <div class="p-20">
+                            @Html.ActionLink("Edit", "Product_Edit", new { id = item.ProductId }) |
+                            @Html.ActionLink("Delete", "Product_Delete", new { id = item.ProductId })
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>

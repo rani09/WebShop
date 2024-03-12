@@ -1,0 +1,6 @@
+﻿@model IEnumerable<WebShop.Models.Brand>
+
+@foreach (var Brand in Model)
+{
+    <li class="brand"><a href="@Url.Action("ShopBrand", "Home", new { id = Brand.BrandId })"><span class="pull-right">(@Brand.Products.Count())</span>@Brand.Name</a></li>
+}

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<VM_ProductSizes_List>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("opret ny", "ProductSizes_Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Size.Name)
+        </td>
+        <td>
+            @Html.ActionLink("ret", "ProductSizes_Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "ProductSizes_Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("slet", "ProductSizes_Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

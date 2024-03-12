@@ -1,0 +1,34 @@
+﻿@model IEnumerable<VM_Category_List>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("opret ny", "Category_Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.ActionLink("ret", "Category_Edit", new { id=item.CategoryId }) |
+            @Html.ActionLink("detaljer", "Category_Details", new { id=item.CategoryId }) |
+            @Html.ActionLink("slet", "Category_Delete", new { id=item.CategoryId })
+        </td>
+    </tr>
+}
+
+</table>

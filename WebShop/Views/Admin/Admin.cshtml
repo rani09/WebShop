@@ -1,0 +1,281 @@
+﻿@model IEnumerable<WebShop.Models.Todolist>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="container">
+    <div class="block-header">
+        <h2>Dashboard</h2>
+
+        <ul class="actions">
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-trending-up"></i>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-check-all"></i>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="" data-toggle="dropdown">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="">Refresh</a>
+                    </li>
+                    <li>
+                        <a href="">Manage Widgets</a>
+                    </li>
+                    <li>
+                        <a href="">Widgets Settings</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Sales Statistics <small>Vestibulum purus quam scelerisque, mollis nonummy metus</small></h2>
+
+            <ul class="actions">
+                <li>
+                    <a href="">
+                        <i class="zmdi zmdi-refresh-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="zmdi zmdi-download"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="" data-toggle="dropdown">
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <a href="">Change Date Range</a>
+                        </li>
+                        <li>
+                            <a href="">Change Graph Type</a>
+                        </li>
+                        <li>
+                            <a href="">Other Settings</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body">
+            <div class="chart-edge">
+                <div id="curved-line-chart" class="flot-chart "></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-charts">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="mini-charts-item bgm-cyan">
+                    <div class="clearfix">
+                        <div class="chart stats-bar"></div>
+                        <div class="count">
+                            <small>Website Traffics</small>
+                            <h2>987,459</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="mini-charts-item bgm-lightgreen">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2"></div>
+                        <div class="count">
+                            <small>Website Impressions</small>
+                            <h2>356,785K</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="mini-charts-item bgm-orange">
+                    <div class="clearfix">
+                        <div class="chart stats-line"></div>
+                        <div class="count">
+                            <small>Total Sales</small>
+                            <h2>$ 458,778</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="mini-charts-item bgm-bluegray">
+                    <div class="clearfix">
+                        <div class="chart stats-line-2"></div>
+                        <div class="count">
+                            <small>Support Tickets</small>
+                            <h2>23,856</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="dash-widgets">
+        <div class="row">
+
+            <div class="col-md-9 col-sm-6">
+                <div id="todo-lists">
+                    <div class="tl-header">
+                        <h2>Todo Lists</h2>
+                        <small>Add, edit and manage your Todo Lists</small>
+
+                        <ul class="actions actions-alt">
+                            <li class="dropdown">
+                                <a href="" data-toggle="dropdown">
+                                    <i class="zmdi zmdi-more-vert"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="">Refresh</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Manage Widgets</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Widgets Settings</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="tl-body">
+                        <div id="add-tl-item">
+                            <i class="add-new-item zmdi zmdi-plus"></i>
+
+                            @using (Html.BeginForm("ToDo_Create", "Admin", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="add-tl-body">
+                                    <textarea name="Description" placeholder="What you want to do..."></textarea>
+
+                                    <div class="add-tl-actions">
+                                        <a href="@Url.Action("Admin", "Admin")" data-tl-action="dismiss"><i class="zmdi zmdi-close"></i></a>
+                                        <input type="submit" class="zmdi zmdi-check" data-tl-action="save">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                            <div class="checkbox media">
+                                <div class="pull-right">
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown">
+                                            <a href="" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li>@Html.ActionLink("Delete", "ToDo_Delete", new { id = item.TodolistId })</li>
+                                                <li>
+                                                    @Html.ActionLink("Is Done", "ToDoEdit", new { id = item.TodolistId })
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="media-body">
+                                    <label>
+                                        @if (item.IsDone)
+                                        {
+                                            <input type="checkbox" checked name="IsDone" id="IsDone">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" name="IsDone" id="IsDone">
+                                        }
+                                        <i class="input-helper"></i>
+                                        <span>@item.Description</span>
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div id="best-selling" class="dash-widget-item">
+                    <div class="dash-widget-header">
+                        <div class="dash-widget-title">Best Sellings</div>
+                        <img src="~/Content/AdminCss/img/widgets/alpha.jpg" alt="">
+                        <div class="main-item">
+                            <small>Samsung Galaxy Alpha</small>
+                            <h2>$799.99</h2>
+                        </div>
+                    </div>
+
+                    <div class="listview p-t-5">
+                        <a class="lv-item" href="">
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img class="lv-img-sm" src="~/Content/AdminCss/img/widgets/note4.jpg" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <div class="lv-title">Samsung Galaxy Note 4</div>
+                                    <small class="lv-small">$850.00 - $1199.99</small>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="lv-item" href="">
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img class="lv-img-sm" src="~/Content/AdminCss/img/widgets/mate7.jpg" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <div class="lv-title">Huawei Ascend Mate</div>
+                                    <small class="lv-small">$649.59 - $749.99</small>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="lv-item" href="">
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img class="lv-img-sm" src="~/Content/AdminCss/img/widgets/535.jpg" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <div class="lv-title">Nokia Lumia 535</div>
+                                    <small class="lv-small">$189.99 - $250.00</small>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="lv-footer" href="">
+                            View All
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

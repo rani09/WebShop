@@ -1,0 +1,20 @@
+﻿@model IEnumerable<WebShop.Models.User>
+
+
+<div class="listview">
+    @foreach (var item in Model)
+    {
+        <a class="lv-item" href="">
+            <div class="media">
+                <div class="pull-left p-relative">
+                    <img class="lv-img-sm" src="img/profile-pics/2.jpg" alt="">
+                    <i class="chat-status-busy"></i>
+                </div>
+                <div class="media-body">
+                    <div class="lv-title">@item.UserName</div>
+                    <small class="lv-small">@item.Logins</small>
+                </div>
+            </div>
+        </a>
+    }
+</div>

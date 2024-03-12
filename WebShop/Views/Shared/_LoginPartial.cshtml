@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+    <div class="navbar-right">
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fa fa-user"></i></button>
+            <div class="dropdown-content">
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+                    if (User.IsInRole("Administrator"))
+                    {
+                        @Html.ActionLink("Admin Panel", "Category_Index", "Admin")
+                    }
+                    <a href="javascript:document.getElementById('logoutForm').submit()">LOG OFF</a>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("REGISTER", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("LOG IN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

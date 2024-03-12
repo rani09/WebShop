@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WebShop.Models.Category>
+@foreach (var Cate in Model)
+{
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Cate.Title <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                <div class="yamm-content">
+                    @foreach (SubCategory Sub in Cate.SubCategoies)
+                    {
+                        <ul class="col-sm-2 list-unstyled">
+                            <li><h4><strong><a href="@Url.Action("Shop", "Home", new { id = Sub.SubCategoryId })">@Sub.Name</a></strong></h4></li>
+
+                            <li><p style="word-wrap: break-word; white-space: normal; color:#fff">@Sub.Description</p></li>
+                        </ul>
+                    }
+                </div>
+            </li>
+        </ul>
+    </li>
+}

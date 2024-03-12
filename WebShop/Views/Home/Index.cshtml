@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebShop.Models.Product>
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#bs-carousel" data-slide-to="1"></li>
+        <li data-target="#bs-carousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item slides active">
+            <div class="slide-1"></div>
+            <div class="hero">
+                <hgroup>
+                    <h1>We are creative</h1>
+                    <h3>50% OFF ALL MENS SHOSE</h3>
+                </hgroup>
+            </div>
+        </div>
+        <div class="item slides">
+            <div class="slide-2"></div>
+            <div class="hero">
+                <hgroup>
+                    <h1>We are smart</h1>
+                    <h3>SEE NEW SHOSE OF WOMEN AND MEN</h3>
+                </hgroup>
+            </div>
+        </div>
+        <div class="item slides">
+            <div class="slide-3"></div>
+            <div class="hero">
+                <hgroup>
+                    <h1>We are amazing</h1>
+                    <h3>JUST SHOP WITH OS</h3>
+                </hgroup>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h2>JUST ARRIVED</h2>
+            @*<h2>popular</h2>*@
+        </div>
+        <div class="row">
+            @foreach (var just in Model.OrderByDescending(a => a.Date).Take(3))
+            {
+                <div class="col-sm-4 team-member-wrap">
+                    <div class="team-member">
+                        <img src="~/Content/Images/@just.Image" class="img-responsive" alt="Member Image">
+                        <div class="team-details">
+                            <div class="editContent">
+                                <h4 class="member-name">@just.Title</h4>
+                            </div>
+                            <div class="editContent">
+                                <p class="position">@just.Price</p>
+                            </div>
+                            <div class="editContent">
+                                <p style="word-wrap: break-word; white-space: normal">@just.Description</p>
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="page-header">
+            <h2>POPULAR</h2>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="google-signin-scope" content="raniwaadhermez@gmail.com">
+    <meta name="google-signin-client_id" content="1051028933283-mmh2uale5cqjo3nebpjdptd9b988d7c4.apps.googleusercontent.com">
+    <title>HOME | Shose</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Content/Images/Shopping (1).ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald" />
+</head>
+<body>
+    <div id="custom-bootstrap-menu" class="navbar navbar-default yamm" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" id="font-face" href="@Url.Action("Index", "Home")">SHOES</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+                    <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menubuilder">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a href="@Url.Action("Index", "Home")">HOME</a></li>
+                    @Html.Action("_Category", "Home")
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @{ string cartCount = " CART (" + ViewBag.ShoppingCartCount + ")"; }
+                    <li class="active">
+                        @Html.ActionLink(cartCount, "Indkobkurv", "Home", new { @class = "fa fa-shopping-cart" })
+                    </li>
+                    <li><a href="#search"><span class="fa fa-search"></span></a></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+    {
+        <div id="search">
+            <button type="button" class="close">×</button>
+            <input type="text" name="searchText" placeholder="what are you looking for? Shoes!" />
+            <input type="submit" value="Search" class="btn btn-default btn-block" />
+        </div>
+    }
+    <div>
+        @RenderBody()
+    </div>
+    <div class="container">
+        <hr />
+        <footer>
+            <div class="footer-above">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col col-md-4">
+                            <h3>SHOSE</h3>
+                            <p>Some people have hobbies. We have shoes. At shoes.com, shoes aren't just a part of our name, they are our passion. Here you'll find an incredible selection of fashionable footwear from popular and premium labels. Each season, we are thrilled to offer you cutting</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>SOCAIL</h3>
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="#" class="btnb-social btnb-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btnb-social btnb-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btnb-social btnb-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btnb-social btnb-outline"><i class="fa fa-fw fa-instagram"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btnb-social btnb-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btnb-social btnb-outline"><i class="fa fa-fw fa-pinterest"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-col col-md-4">
+                            <h3>CONTACT</h3>
+                            <p>Shose A/S Shose street 203, 9000 Aalborg, Denmark</p>
+                            <address>
+                                CVR: 20884086 <br />
+                                Email: mail@shose.dk
+                            </address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Search.js"></script>
+    <script src="~/Scripts/Shoping.js"></script>
+    <script src="~/Scripts/Alert.js"></script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '765275236937058',
+                xfbml: true,
+                version: 'v2.5'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script>
+        function onSignIn(googleUser) {
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+            console.log("Name: " + profile.getName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail());
+
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+        };
+    </script>
+</body>
+</html>

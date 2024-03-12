@@ -1,0 +1,7 @@
+﻿@model IEnumerable<WebShop.Models.Image>
+<div class="product-image">
+    @foreach (var img in Model)
+    {
+        <a href="#"><img src="~/Content/Images/@img.Images" class="img-responsive" alt="Checked Short Dress" data-selector="img" style=""></a>
+    }
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<VM_Image_List>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Opret ny", "Image_Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Products.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Images)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Products.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Images)
+        </td>
+        <td>
+            @Html.ActionLink("ret", "Image_Edit", new { id=item.ImageId }) |
+            @Html.ActionLink("slet", "Image_Delete", new { id=item.ImageId })
+        </td>
+    </tr>
+}
+
+</table>

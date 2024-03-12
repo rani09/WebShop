@@ -1,0 +1,18 @@
+﻿@model IEnumerable<WebShop.Models.Category>
+
+<ul id="tree1">
+    @foreach (var Cate in Model)
+    {
+        <li>
+            <a href="#">@Cate.Title</a>
+            <ul>
+                @foreach (SubCategory Sub in Cate.SubCategoies)
+                {
+
+                    <li><strong><a href="@Url.Action("Shop", "Home", new { id = Sub.SubCategoryId })">@Sub.Name</a></strong></li>
+
+                }
+            </ul>
+        </li>
+    }
+</ul>

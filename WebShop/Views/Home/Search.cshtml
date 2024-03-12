@@ -1,0 +1,111 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList<WebShop.Models.Product>
+@{
+    ViewBag.Title = "Search";
+}
+<div class="body-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <ol class="breadcrumb">
+                    <li class="active">
+                        CATEGORY
+                    </li>
+                </ol>
+                <div class="well">
+                    @Html.Action("_SubCategory", "Home")
+                </div>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        COLOR
+                    </li>
+                </ol>
+                <div class="well">
+
+                </div>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        SIZE
+                    </li>
+                </ol>
+                <div class="well">
+
+                </div>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        PRICE
+                    </li>
+                </ol>
+                <div class="well">
+
+                </div>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        BRANDS
+                    </li>
+                </ol>
+                <div class="well">
+                    @Html.Action("_Brand", "Home")
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            SEARCH
+                        </li>
+                        <li class="pull-right">
+                            <a href="#" id="grid">
+                                <i class="glyphicon glyphicon-th"></i>
+                            </a>
+                            <a href="#" id="list">
+                                <i class="glyphicon glyphicon-th-list"></i>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="row">
+                    <div id="products" class="row list-group">
+                        @foreach (var Product in Model)
+                        {
+                            <div class="item  col-xs-4 col-lg-4">
+                                <div class="thumbnail">
+                                    <img class="group list-group-image" src="~/Content/Images/@Product.Image" alt="" />
+                                    <div class="caption">
+                                        <h2 class="group inner list-group-item-heading">
+                                            <a href="@Url.Action("Shop_Details", "Home", new { id = @Product.ProductId })">@Product.Title</a>
+                                        </h2>
+                                        <p class="group inner list-group-item-text">
+                                            @Product.Description
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="span6 pull-left">
+                                                    <p class="lead">
+                                                        @Product.Price
+                                                    </p>
+                                                </div>
+                                                <div class="span6 pull-right">
+                                                    @Html.ActionLink("ADD TO CART", "AddToCart", "Home", new { @id = Product.ProductId, }, new { @class = "btn btn-dark btn-block" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row"></div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    @Html.PagedListPager(Model, Page => Url.Action("Search", new { Page }), new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
